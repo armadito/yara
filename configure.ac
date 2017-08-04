@@ -110,6 +110,15 @@ AC_ARG_ENABLE([dotnet],
     CFLAGS="$CFLAGS -DDOTNET_MODULE"
   fi])
 
+AC_ARG_ENABLE([pdf],
+  [AS_HELP_STRING([--enable-pdf], [enable PDF module])],
+  [if test x$enableval = xyes; then
+    build_pdf_module=true
+    AC_CHECK_LIB(armadito-pdf,getVersion,,
+      AC_MSG_ERROR([please install libarmadito-pdf library]))
+    CFLAGS="$CFLAGS -DPDF_MODULE"
+  fi])
+
 AC_ARG_WITH([crypto],
   AS_HELP_STRING([--without-crypto],
     [ignore presence of OpenSSL and disable it]))
@@ -163,6 +172,7 @@ AM_CONDITIONAL([CUCKOO_MODULE], [test x$build_cuckoo_module = xtrue])
 AM_CONDITIONAL([MAGIC_MODULE], [test x$build_magic_module = xtrue])
 AM_CONDITIONAL([HASH_MODULE], [test x$build_hash_module = xtrue])
 AM_CONDITIONAL([DOTNET_MODULE], [test x$build_dotnet_module = xtrue])
+AM_CONDITIONAL([PDF_MODULE], [test x$build_pdf_module = xtrue])
 AM_CONDITIONAL([GCC], [test "x$GCC" = xyes])
 
 AC_CONFIG_FILES([Makefile])

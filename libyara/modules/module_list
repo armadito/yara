@@ -18,3 +18,7 @@ MODULE(magic)
 #ifdef HASH_MODULE
 MODULE(hash)
 #endif
+
+#ifdef PDF_MODULE
+MODULE(pdf)
+#endif

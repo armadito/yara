@@ -29,6 +29,10 @@ MODULES += modules/pe_utils.c
 # MODULES += modules/yourmodule.c
 #
 
+if PDF_MODULE
+MODULES += modules/pdf.c
+endif
+
 AM_YFLAGS=-d
 
 AM_CFLAGS=-Wall -Wno-deprecated-declarations -std=gnu99 -I$(srcdir)/include
